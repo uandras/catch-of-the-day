@@ -1,0 +1,34 @@
+**************************************
+Deploying to Now (https://www.zeit.co)
+**************************************
+
+0. Make sure that "now-build" script in package.json is the following:
+    "now-build": "npm run build && cp -r build dist",
+1. Install the "now" command line command, and check installation success (if not working, try install "now" globally with the -g option):
+    npm install now
+    now -v
+2. Install "serve" in order our application to run:
+    npm install serve
+3. Modify the start command in package.json in order for go to the production (rename the development start command to p.e. dev, in order to preserve it):
+    "start": "serve --single ./build",
+4. Run "now" in command line to deploy the application to "now"'s server
+5. If needed, update firebase authorized domains for OAuth (Firebase Console\Authentication\Sign-in Method\Authorized Domains)
+
+
+***********************************************
+Deploying to Netlify (https://www.netlify.com/)
+***********************************************
+
+1. for routing issues, see (_redirect file in "build" directory):
+    https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file
+2. npm install netlify -g
+3. netlify deploy
+
+
+***********************************************
+Deploying to an Apache server (p.e. tarhely.eu)
+***********************************************
+
+To avoid routing issues:
+1. Create a .htaccess file in the "build" directory
+2. Edit this file according to Apache readme file

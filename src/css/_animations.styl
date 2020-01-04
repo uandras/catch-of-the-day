@@ -1,0 +1,48 @@
+/*
+  Possible Animations:
+  enter
+  exit
+  appear Must set transitionAppear={true} on animation component
+*/
+
+/* stylus compiling will be done using the 2 scripts which are in package.json, they are not React-related:
+    styles
+    styles-watch
+ */
+
+.order-enter
+  //transform is doing the animation, can have more than 1 type of it, p.e.::
+  transform: translateX(-120%) rotate(0)
+  transition 0.5s
+  max-height: 0 //to enable automatic height growing (see in ..-active)
+  padding 0 !important //to overwrite default padding for sure
+  &.order-enter-active
+    transform: translateX(0) rotate(1440deg)
+    max-height :60px
+    padding 2rem 0 !important //to overwrite default padding for sure
+
+.order-exit
+  transform: translateX(0)
+  transition 0.5s
+  &.order-exit-active
+    transform: translateX(120%)
+    padding 0 !important //to overwrite default padding for sure
+
+.count-enter
+  transition 0.5s
+  transform :translateY(100%)
+  &.count-enter-active
+    transform :translateY(0)
+
+.count-exit
+  transition 0.5s
+  transform :translateY(0)
+  //in order to overlap with the count-enter, we need the following lines:
+  //*** start *** overlap
+  position absolute
+  left 0
+  bottom 0
+  //*** end *** overlap
+  &.count-exit-active
+    transform :translateY(-100%)
+
